@@ -26,7 +26,7 @@
             <div>
                 <ul class="nav navbar-nav">
                     <li id="homeTab">
-                        <a href="#" onclick="showpage(0)">Home</a>
+                        <a href="#" onclick="showpage(0)">Login</a>
                     </li>
                     <li style="display: none" id="customerTab">
                         <a href="#" onclick="showpage(1)">Customer</a>
@@ -53,32 +53,39 @@
 
     <div class="container" id="car" style="display: none">
         <div class="container-fluid">
-            <form>
-                <div class="form-group">
-                    <label for="Productos">PRODUCTOS MASTER -</label>
-                    <select type="form-control" id="id_productos" onChange="getDataProductos()"></select>
-                </div>
-                <div class="form-group">
-                    <label for="Precio">PRECIO -</label>
-                    <input placeholder="0.00" id="Precio" type="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="Descuento">DESCUENTO -</label>
-                    <input type="form-control" size="1" id="Descuento" value="1" onkeydown="if (event.keyCode == 13) document.getElementById('addShoppingCar').click()"
-                        readonly/>
-                </div>
-                <div class="form-group">
-                    <label for="Precio">CANTIDAD -</label>
-                    <input type="form-control" size="1" id="Cantidad" value="1" onkeydown="if (event.keyCode == 13) document.getElementById('addShoppingCar').click()"
-                    />
-                </div>
+            <div class="col-sm-6">
+                <form>
+                    <fieldset>
+                        <legend>Product information:</legend>
+                        <div class="form-group">
+                            <label for="Productos">Product choice: </label>
+                            <select type="form-control" id="id_productos" onChange="getDataProductos()"></select>
+                        </div>
+                        <div class="form-group">
+                            <label for="Precio">Price: </label>
+                            <input placeholder="0.00" id="Precio" type="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="Descuento">Discount: </label>
+                            <input type="form-control" size="1" id="Descuento" value="1" onkeydown="if (event.keyCode == 13) document.getElementById('addShoppingCar').click()"
+                                readonly/>
+                        </div>
+                        <div class="form-group">
+                            <label for="Precio">Quantity: </label>
+                            <input type="form-control" size="1" id="Cantidad" value="1" onkeydown="if (event.keyCode == 13) document.getElementById('addShoppingCar').click()"
+                            />
+                        </div>
+                        <div class="form-group">
+                            <input class="btn btn-success btn-sm col-sm-1" type="button" id="addShoppingCar" onclick="addCar()" value=" AGREGAR PRODUCTO " />
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+            <div class="col-sm-6">
                 <div class="form-group">
                     <img id="Imagen" src="" alt="..." class="img-thumbnail" height="100" width="100">
                 </div>
-                <div class="form-group">
-                    <input class="btn btn-success btn-block btn-lg col-sm-1" type="button" id="addShoppingCar" onclick="addCar()" value=" AGREGAR PRODUCTO " />
-                </div>
-            </form>
+            </div>
 
             <table id="tableProducts" class="table table-striped">
                 <thead>

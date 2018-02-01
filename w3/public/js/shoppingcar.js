@@ -146,7 +146,7 @@ function addCar() {
 
         if (cantidad == "") throw "TECLEAR CANTIDAD !";
         if (isNaN(cantidad)) throw "SOLO NUMEROS";
-        if (cantidad < 1) throw "CANT DEBE SER MAYOR DE 0";
+        if (cantidad < 1) throw "DEBE SER MAYOR DE 0";
 
         var item = new ShoppingCarItem();
         item.Par = i + 1;
