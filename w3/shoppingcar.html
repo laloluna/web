@@ -75,9 +75,9 @@
         </div>
 
         <div class="container" id="car" style="display: none">
-            <div class="row">
-                <form>
-                    <div class="col">
+            <div class="container-fluid">
+                <div class="col-sm-6">
+                    <form>
                         <div class="form-group">
                             <label for="Productos">Product choice: </label>
                             <select class="form-control" id="id_productos" onChange="getDataProductos()"></select>
@@ -99,13 +99,13 @@
                         <div class="form-group">
                             <input class="btn btn-outline-success btn-block" type="button" id="addShoppingCar" onclick="addCar()" value=" Agregar Producto " />
                         </div>
-                    </div>
-                    <div class="col justify-content-md-center">
+                    </form>
+                </div>
+                <div class="col-sm-6 justify-content-md-center">
                         <div class="form-group">
                             <img id="Imagen" src="" alt="..." class="img-thumbnail" height="100" width="100">
                         </div>
-                    </div>
-                </form>
+                </div>
 
                 <table id="tableProducts" class="table table-striped">
                     <thead>
