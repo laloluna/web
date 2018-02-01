@@ -1,0 +1,222 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+     
+  <meta name="viewport" content="width=device-width" />
+   
+   <style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }
+      #map_canvas { height: 100% }
+    </style>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+<script type="text/javascript"
+  src="https://maps.googleapis.com/maps/api/js?&key=AIzaSyCLRzv_ccZR_xrFUMBPUqis_oFCoPrac3I&&sensor=false">
+</script>
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+
+        var mapOptions = null;
+        var map = null;
+       
+        var infowindow;
+        (function () 
+            {
+                google.maps.Map.prototype.markers = new Array();
+                google.maps.Map.prototype.getMarkers = function ()
+                {
+                return this.markers
+                };
+            
+                google.maps.Map.prototype.clearMarkers = function () 
+                {
+                    for (var i = 0; i < this.markers.length; i++) {
+                        this.markers[i].setMap(null);
+                    }
+                this.markers = new Array();
+                };
+            
+                google.maps.Marker.prototype._setMap = google.maps.Marker.prototype.setMap;
+                google.maps.Marker.prototype.setMap = function (map) 
+                {
+                    if (map) {
+                        map.markers[map.markers.length] = this;
+                    }
+                    this._setMap(map);
+                }
+            }
+        )();
+            
+        
+        
+        function initMap() {
+            lat= 19.01826447750003;
+            lng = -98.24133396148682;
+          
+            mapOptions = {
+                center: new google.maps.LatLng(lat, lng),
+                zoom: 14,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+
+            map = new google.maps.Map(document.getElementById("map_canvas"),
+                mapOptions);
+            
+            google.maps.event.addListener(map, 'click', function (event) {
+                
+                lat =event.latLng.lat();
+                lng = event.latLng.lng();
+
+                document.getElementById('lat').value=lat;
+                document.getElementById('lng').value=lng;
+                
+                map.clearMarkers();
+                drawMarker();
+            });
+
+            drawMarker();
+
+        }
+
+        
+        function drawMarker() 
+        {
+            
+            var infowindow = new google.maps.InfoWindow();
+            var marker, i; 
+            var nombre = sessionStorage.nombreCliente;
+          
+            var pinColor = document.getElementById('pinColor').value;
+            pinColor = pinColor.replace('#','');
+        
+            var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor,
+                new google.maps.Size(21, 34),
+                new google.maps.Point(0, 0),
+                new google.maps.Point(10, 34));
+
+            marker = new google.maps.Marker({
+                position: new google.maps.LatLng(lat, lng),
+                icon: pinImage,
+                title: '' + document.getElementById('message').value,
+                map: map
+            });
+
+            google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                return function () {
+                    infowindow.setContent(document.getElementById('message').value);
+                    infowindow.open(map, marker);
+                }
+            })(marker, i));
+        }
+
+        
+    
+    function obtenerDireccion(){
+        var geocoder = new google.maps.Geocoder;
+        
+        var mylat = document.getElementById('lat').value;
+        var mylng = document.getElementById('lng').value;
+
+        var latlng = {lat: parseFloat(mylat), lng: parseFloat(mylng)};
+        geocoder.geocode({'location': latlng}, function(results, status) {
+            if (status === 'OK') {
+                if (results[0]) {
+                    window.alert(
+                        "DIRECCION ACTUAL\n\n" + 
+                        results[0].formatted_address
+                    );
+                } else {
+                    window.alert('No results found');
+                }
+            } else {
+            window.alert('Geocoder failed due to: ' + status);
+            }
+        });
+    }
+
+
+    function obtenerClima(){
+        var lat = 19.0433;
+        var lng = -98.2019;
+        var apiKey = "2af72ef62258728d72777bef612f2a3e";
+
+        $.getJSON("http://api.openweathermap.org/data/2.5/weather?lat=" + 
+        lat + "&lon=" + lng + "&appid=" + apiKey, function(data){
+            alert(
+                "TEMPRERATURA ACTUAL\n\n" + 
+                "Temperatura: " + data.main.temp + " " +
+                "Presion Atmosferica: " + data.main.pressure + " \n" + 
+                "Humedad: " + data.main.humidity + " " +
+                "Velocidad de Viento: " + data.wind.speed
+            );
+        })
+    }
+
+ 
+
+    </script>
+  
+  <style type="text/css">
+        .colorYellow { color: #FBBC05; }
+        .colorRed { color: #EA4335; }
+        .colorBlue { color: #4285F4; }
+        .colorGreen { color: #34A853; }
+        .colorWhite { color: #FFFFFF; }
+ </style>
+ 
+ 
+
+
+ 
+  </head>
+
+  <body onload="initMap()">
+   
+       <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12" align="center">
+                    <span class='colorBlue'><b>Goo</b></span><span class='colorGreen'><b>gle</b></span>
+                    <span class='colorRed'><b>Maps</b></span>
+                    <span class='colorYellow'><b>Demo </b></span>
+                </div>
+                <div class="col-sm-12">
+                    <span class='colorWhite'>.</span>
+                </div>
+                <div class="col-sm-2">
+                    <span>LAT:</span>
+                    <input id="lat" type="text" size="10"/>
+                </div>
+                <div class="col-sm-2">
+                    <span>LON:</span>
+                    <input id="lng" type="text" size="10"/>
+                </div>
+                <div class="col-sm-2">
+                    <input type="button" value="Obtener Direccion" onclick="obtenerDireccion()"/>
+                </div>
+                <div class="col-sm-2">
+                        <input type="button" value="Obtener Clima" onclick="obtenerClima()"/>
+                </div>
+                <div class="col-sm-2">
+                        <span>M:</span>
+                    <input id="message" type="text" size="10" placeholder="Pin Message"/>
+                </div>
+                <div class="col-sm-2">
+                    <span>PIN:</span>
+                    <input type="color" id="pinColor" value="0000FF" onclick="drawMarker()"/>
+                </div>
+            </div>
+        </div>
+
+      <div id="map_canvas"  style="width: 100%; height: 90%; float: left; border: 1px solid black;">
+
+      </div>
+  </body>
+</html>
