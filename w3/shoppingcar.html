@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Simple Shopping Car</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="public/js/shoppingcar.js"></script>
+    <script type="text/javascript" src="public/js/app.js"></script>
+    <script type="text/javascript" src="public/js/facebook.js"></script>
+    <script type="text/javascript" src="https://www.paypalobjects.com/api/checkout.js"></script>
+    <script type="text/javascript" src="public/js/paypal.js"></script>
+</head>
+
+<body onload="initialize()">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Shooping Cart</a>
+            </div>
+            <div>
+                <ul class="nav navbar-nav">
+                    <li id="homeTab">
+                        <a href="#" onclick="showpage(0)">Home</a>
+                    </li>
+                    <li style="display: none" id="customerTab">
+                        <a href="#" onclick="showpage(1)">Customer</a>
+                    </li>
+                    <li style="display: none" id="cartTab">
+                        <a href="#" onclick="showpage(2)">Cart</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container" id="home">
+        <fb:login-button scope="public_profile,email" onlogin="checkLoginState(); showpage(1)">
+        </fb:login-button>
+    </div>
+
+    <div class="container" id="customer" style="display: none">
+        <div class="container-fluid">
+            <h1 id="status"></h1>
+            <img src="" id="ProfilePicture" class="img-thumbnail">
+        </div>
+    </div>
+
+    <div class="container" id="car" style="display: none">
+        <div class="container-fluid">
+            <form>
+                <div class="form-group">
+                    <label for="Productos">PRODUCTOS -</label>
+                    <select type="form-control" id="id_productos" onChange="getDataProductos()"></select>
+                </div>
+                <div class="form-group">
+                    <label for="Precio">PRECIO -</label>
+                    <input placeholder="0.00" id="Precio" type="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="Descuento">DESCUENTO -</label>
+                    <input type="form-control" size="1" id="Descuento" value="1" onkeydown="if (event.keyCode == 13) document.getElementById('addShoppingCar').click()"
+                        readonly/>
+                </div>
+                <div class="form-group">
+                    <label for="Precio">CANTIDAD -</label>
+                    <input type="form-control" size="1" id="Cantidad" value="1" onkeydown="if (event.keyCode == 13) document.getElementById('addShoppingCar').click()"
+                    />
+                </div>
+                <div class="form-group">
+                    <img id="Imagen" src="" alt="..." class="img-thumbnail" height="100" width="100">
+                </div>
+                <div class="form-group">
+                    <input class="btn btn-success btn-block btn-lg col-sm-1" type="button" id="addShoppingCar" onclick="addCar()" value=" AGREGAR PRODUCTO " />
+                </div>
+            </form>
+
+            <table id="tableProducts" class="table table-striped">
+                <thead>
+                    <th>Cantidad</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Importe</th>
+                    <th>Imagen</th>
+                    <th>Descuento</th>
+                    <th>Agregar</th>
+                    <th>Borrar</th>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+
+            <table border="0">
+                <tr>
+                    <td>Total Importe: $</td>
+                    <td>
+                        <div id="totalImporte" />
+                    </td>
+
+                    <td>Tot Uni:</td>
+                    <td>
+                        <div id="totalUnidades" />
+                    </td>
+                </tr>
+            </table>
+
+            <div id="paypal-button">
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
