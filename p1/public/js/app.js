@@ -4,7 +4,7 @@ function showpage(idpage){
         $("#customer").hide();
         $("#shop").hide();
         $("#map").hide();
-        $("#youtube").hide();
+        $("#videos").hide();
     }
 
     if (idpage==1){
@@ -12,7 +12,7 @@ function showpage(idpage){
         $("#home").hide();
         $("#shop").hide();
         $("#map").hide();
-        $("#youtube").hide();
+        $("#videos").hide();
     }
 
     if (idpage==2){
@@ -20,12 +20,12 @@ function showpage(idpage){
         $("#customer").hide();
         $("#home").hide();
         $("#map").hide();
-        $("#youtube").hide();
+        $("#videos").hide();
     }
 
     if (idpage==3){
         $("#map").show();
-        $("#youtube").hide();
+        $("#videos").hide();
         $("#shop").hide();
         $("#customer").hide();
         $("#home").hide();
@@ -33,7 +33,7 @@ function showpage(idpage){
 
     if (idpage==4){
         $("#map").hide();
-        $("#youtube").show();
+        $("#videos").show();
         $("#shop").hide();
         $("#customer").hide();
         $("#home").hide();
@@ -45,7 +45,7 @@ function showpage2(idpage){
     $("#customer").hide();
     $("#shop").hide();
     $("#map").hide();
-    $("#youtube").hide();
+    $("#videos").hide();
 
     if (idpage==0){
         $("#home").show();
@@ -64,6 +64,6 @@ function showpage2(idpage){
     }
 
     if (idpage==4){
-        $("#youtube").show();
+        $("#videos").show();
     }
 }
