@@ -76,5 +76,5 @@ function testAPI() {
 
 function showTabs() {
   $('#customerTab').show();
-  $('#cartTab').show();
+  $('#shopTab').show();
 }
