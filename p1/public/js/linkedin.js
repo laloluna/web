@@ -11,4 +11,13 @@ function onLinkedInAuth() {
 function displayProfiles(profiles) {
     member = profiles.values[0];
     document.getElementById('userName').innerHTML = member.firstName + " " + member.lastName;
+    showTabs();
 }
+
+function showTabs() {
+    $('#customerTab').show();
+    $('#shopTab').show();
+    $('#locTab').show();
+    $('#chanTab').show();
+  }
+  
