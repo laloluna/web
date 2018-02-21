@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Gamming Site</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+        <script type="text/javascript" src="public/js/gammingsite.js"></script>
+        <script type="text/javascript" src="public/js/app.js"></script>
+        <script type="text/javascript" src="public/js/facebook.js"></script>
+        <script type="text/javascript" src="https://www.paypalobjects.com/api/checkout.js"></script>
+        <script type="text/javascript" src="public/js/paypal.js"></script>
+    </head>
+
+    <body onload="initialize()">
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Gamming</a>
+            
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                <li class="nav-item" style="display: none" id="customerTab">
+                    <a class="nav-link" href="#" onclick="showpage(1)">Your Info</a>
+                </li>
+                <li class="nav-item" style="display: none" id="shopTab">
+                    <a class="nav-link" href="#" onclick="showpage(2)">Shop</a>
+                </li>
+                <li class="nav-item" style="display: none" id="locTab">
+                    <a class="nav-link" href="#" onclick="showpage(3)">Location</a>
+                </li>
+                <li class="nav-item" style="display: none" id="chanTab">
+                    <a class="nav-link" href="#" onclick="showpage(4)">Channel</a>
+                </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" onclick="showpage(0)">Login</button>
+                </form>
+            </div>
+        </nav>
+
+        <div class="container" id="home">
+            <fb:login-button scope="public_profile,email" onlogin="checkLoginState(); showpage(1)">
+            </fb:login-button>
+        </div>
+
+        <div class="container" id="customer" style="display: none">
+            <div class="container-fluid">
+                <h1 id="status"></h1>
+                <img src="" id="ProfilePicture" class="img-thumbnail">
+            </div>
+        </div>
+
+        <div class="container" id="shop" style="display: none">
+            <div class="row justify-content-center">
+                <h1>Poduct</h1>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <form>
+                        <div class="form-group">
+                            <label for="Productos">Product choice: </label>
+                            <select class="form-control" id="id_productos" onChange="getDataProductos()"></select>
+                        </div>
+                        <div class="form-group">
+                            <label for="Precio">Price: </label>
+                            <input type="number" placeholder="0.00" id="Precio" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="Descuento">Discount: </label>
+                            <input type="number" class="form-control" size="1" id="Descuento" value="1" onkeydown="if (event.keyCode == 13) document.getElementById('addShoppingCar').click()"
+                                readonly/>
+                        </div>
+                        <div class="form-group">
+                            <label for="Precio">Quantity: </label>
+                            <input type="number" class="form-control" size="1" id="Cantidad" value="1" onkeydown="if (event.keyCode == 13) document.getElementById('addShoppingCar').click()"
+                            />
+                        </div>
+                        <div class="form-group">
+                            <input class="btn btn-outline-success btn-block" type="button" id="addShoppingCar" onclick="addCar()" value=" Agregar Producto " />
+                        </div>
+                    </form>
+                </div>
+                <div class="col align-self-center justify-self-center">
+                    <div class="form-group">
+                        <img id="Imagen" src="" alt="..." class="img-fluid" alt="Product image">
+                    </div>
+                </div>
+
+                <table id="tableProducts" class="table table-bordered">
+                    <thead>
+                        <th>Quantity</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Payment</th>
+                        <th>Image</th>
+                        <th>Discount</th>
+                        <th width="10%">Add</th>
+                        <th width="10%">Remove</th>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+
+                <table border="0">
+                    <tr>
+                        <td>Payment: $</td>
+                        <td>
+                            <div id="totalImporte" />
+                        </td>
+
+                        <td>Units:</td>
+                        <td>
+                            <div id="totalUnidades" />
+                        </td>
+                    </tr>
+                </table>
+
+                <div id="paypal-button">
+                </div>
+            </div>
+        </div>
+        <div class="container" id="map" style="display: none">
+            <div class="container-fluid">
+                <h1 id="status"></h1>
+                <img src="" id="ProfilePicture" class="img-thumbnail">
+            </div>
+        </div>
+        <div class="container" id="youtube" style="display: none">
+            <div class="container-fluid">
+                <h1 id="status"></h1>
+                <img src="" id="ProfilePicture" class="img-thumbnail">
+            </div>
+        </div>
+    </body>
+</html>
