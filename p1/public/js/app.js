@@ -4,8 +4,6 @@ function showpage(idpage){
     $("#shop").hide();
     $("#map").hide();
     $("#videos").hide();
-    $("#map_canvas").hide();
-    $("#youtube").hide();
 
     if (idpage==0){
         $("#home").show();
@@ -21,11 +19,9 @@ function showpage(idpage){
 
     if (idpage==3){
         $("#map").show();
-        $("#map_canvas").show();
     }
 
     if (idpage==4){
         $("#videos").show();
-        $("#youtube").show();
     }
 }
