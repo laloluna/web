@@ -13,6 +13,7 @@ function statusChangeCallback(response) {
     // The person is not logged into your app or we are unable to tell.
     document.getElementById('status').innerHTML = 'Please log ' +
       'into this app.';
+    hideTabs();
   }
 }
 
@@ -77,4 +78,13 @@ function testAPI() {
 function showTabs() {
   $('#customerTab').show();
   $('#shopTab').show();
+  $('#locTab').show();
+  $('#chanTab').show();
+}
+
+function hideTabs() {
+  $('#customerTab').hide();
+  $('#shopTab').hide();
+  $('#locTab').hide();
+  $('#chanTab').hide();
 }

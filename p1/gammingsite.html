@@ -9,12 +9,17 @@
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
         <script type="text/javascript" src="public/js/gammingsite.js"></script>
         <script type="text/javascript" src="public/js/app.js"></script>
         <script type="text/javascript" src="public/js/facebook.js"></script>
+        <script type="text/javascript" src="public/js/maps.js"></script>
+
         <script type="text/javascript" src="https://www.paypalobjects.com/api/checkout.js"></script>
         <script type="text/javascript" src="public/js/paypal.js"></script>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?&sensor=true"></script>
+
     </head>
 
     <body onload="initialize()">
@@ -126,9 +131,7 @@
             </div>
         </div>
         <div class="container" id="map" style="display: none">
-            <div class="container-fluid">
-                <h1 id="status"></h1>
-                <img src="" id="ProfilePicture" class="img-thumbnail">
+            <div class="container-fluid" onload="initMap()">
             </div>
         </div>
         <div class="container" id="youtube" style="display: none">
