@@ -24,23 +24,23 @@ function getProducts() {
 
     var myProduct1 = new GammingSiteProduct();
     myProduct1.id = "001";
-    myProduct1.name = "Coca Cola";
+    myProduct1.name = "Skyrim";
     myProduct1.price = "12";
-    myProduct1.image = "https://www.superama.com.mx/Content/images/products/img_large/0750105532062L.jpg";
+    myProduct1.image = "https://vignette.wikia.nocookie.net/elderscrolls/images/c/c5/Skyrim_Cover.png/revision/latest?cb=20160812173034";
     myProduct1.discount = 20;
 
     var myProduct2 = new GammingSiteProduct();
     myProduct2.id = "002";
-    myProduct2.name = "Adidas NMD";
+    myProduct2.name = "League of Legends";
     myProduct2.price = "3000";
-    myProduct2.image = "https://media.journeys.com/images/products/1_448575_ZM.JPG";
+    myProduct2.image = "https://news-a.akamaihd.net/public/images/misc/GameBox.jpg";
     myProduct2.discount = 30;
 
     var myProduct3 = new GammingSiteProduct();
     myProduct3.id = "003";
-    myProduct3.name = "iPhone X";
+    myProduct3.name = "Fotnite";
     myProduct3.price = "28000";
-    myProduct3.image = "https://media.elpalaciodehierro.com/media/catalog/product/cache/1/image/1800x1800/9df78eab33525d08d6e5fb8d27136e95/3/8/38676858_x1.jpg";
+    myProduct3.image = "https://i11a.3djuegos.com/juegos/8298/fortnite/fotos/ficha/fortnite-3787432.jpg";
     myProduct3.discount = 50;
 
     listProducts.push(myProduct1);
