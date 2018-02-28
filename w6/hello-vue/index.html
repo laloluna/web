@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h3> hello vue.js </h3>
+<div id="app">
+    <ul>
+        <li v-for="product in products">
+            {{ product.quantity }} {{ product.name }}
+            <span v-if="product.quantity === 0">
+                - OUT OF STOCK
+            </span>
+        </li>
+    </ul>
+    <h2> Total Inventory: {{ totalProducts }}</h2>
+</div>
+
+<script src="https://unpkg.com/vue"></script>
+<script>
+ const app = new Vue({
+     el: '#app',
+     data: {
+         products: []
+     },
+    created() {
+        fetch('https://api.myjson.com/bins/74l63')
+        .then(response => response.json())
+        .then(json => {
+            this.products = json.products
+        })
+    },
+    computed: {
+        totalProducts () {
+            return this.products.reduce((sum, product) => {
+               return sum + product.quantity 
+            }, 0)
+        }
+    }
+ })
+</script>
+
+</body>
+</html>
+
+
