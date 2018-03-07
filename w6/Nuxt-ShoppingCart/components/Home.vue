@@ -9,9 +9,9 @@
         <b-form-group>
           <b-img center v-bind:src="image" fluid alt="Responsive image"/>
         </b-form-group>
-      </b-card>        
-      <b-button type="submit" variant="primary">Submit</b-button>
-      <b-button type="reset" variant="danger">Reset</b-button>
+      </b-card>
+      <b-button type="submit" variant="outline-success">Submit</b-button>
+      <b-button type="reset" variant="outline-danger">Erase</b-button>
       <b-table striped hover :fields="fields" :items="productsInCart">
         <template  slot="image" slot-scope="data">
           <b-img v-bind:src="data.item.image_path" style="width: 100px; height= 100px;"></b-img>
