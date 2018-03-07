@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h3> CRUD vue.js </h3>
+<div id="app">
+    <ul>
+        <li v-for="product in products">
+            <input type="number" v-model.number="product.exist">
+             {{ product.nombre }}
+            <span v-if= "product.exist ===0">
+                - out of stock
+            </span>
+            <button @click="product.exist += 1">
+                +
+            </button>
+        </li>
+    </ul>
+ <h2>Total inventory {{ totalProducts }}</h2>
+</div>
+
+<script src="https://unpkg.com/vue"></script>
+<script>
+ const app = new Vue(
+    {
+     el: '#app',
+     data: {
+        products: []
+     },
+     computed : {
+         totalProducts () {
+             return this.products.reduce((sum, product) => 
+                    { 
+                        return sum + product.exist 
+                    }, 0)    
+        }
+     }, 
+     created() {
+        fetch('http://localhost:8080/api/products')
+        .then(response => response.json())
+        .then(json => {
+            this.products = json
+        })
+     }
+ })
+</script>
+
+</body>
+</html>
+
+
