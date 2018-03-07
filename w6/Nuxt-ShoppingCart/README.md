@@ -1,6 +1,6 @@
 # Nuxt-ShoppingCart
 
-> My ace Nuxt.js project
+> My superior Nuxt.js project
 
 ## Build Setup
 
