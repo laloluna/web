@@ -1,0 +1,19 @@
+create table productos (id SERIAL NOT NULL, codigo int, nombre varchar (100) , precio float, exist int, "createdAt" date not null default CURRENT_DATE, "updatedAt" date not null default CURRENT_DATE);
+alter table productos add constraint pk_productos primary key (codigo);
+create table proveedores (id SERIAL NOT NULL, codigo int primary key, nombre varchar (100), direccion varchar(200), lat float, lon float, "createdAt" date not null default CURRENT_DATE, "updatedAt" date not null default CURRENT_DATE);
+create table prov_prod(id SERIAL NOT NULL, id_product int, id_prov int, precio float, exist int, "createdAt" date not null default CURRENT_DATE, "updatedAt" date not null default CURRENT_DATE);
+alter table prov_prod add constraint PK_prov_prod primary key (id_product , id_prov);
+alter table prov_prod add constraint FK_id_product foreign key (id_product) references productos(codigo);
+alter table prov_prod add constraint FK_id_prov foreign key (id_prov) references proveedores(codigo);
+create table sepomex (id SERIAL NOT NULL primary key, id_estado int not null, estado varchar(100) not null, id_municipio int not null, municipio varchar(160) not null, ciudad varchar(160), zona varchar(15) not null, cp int not null, asentamiento varchar(700) not null, tipo varchar(200) not null, "createdAt" date not null default CURRENT_DATE, "updatedAt" date not null default CURRENT_DATE);
+
+insert into productos (codigo, nombre, precio, exist) values (1, 'rasp berry pi 3', 1500, 20);
+insert into productos (codigo, nombre, precio, exist) values (2, 'iphone x', 2000, 5);
+insert into proveedores (codigo, nombre, direccion, lat, lon) values (1, 'Eduardo', 'Lomas de Ang', 20.726638, -101.204687);
+insert into proveedores (codigo, nombre, direccion, lat, lon) values (2, 'Enrique', 'Villas Atlixco', 22.686308, -104.720312);
+insert into proveedores (codigo, nombre, direccion, lat, lon) values (3, 'Ilse', 'El plillar', 18.408016, -99.798437);
+insert into prov_prod (id_product, id_prov, precio, exist) values (1, 2, 100, 10);
+insert into prov_prod (id_product, id_prov, precio, exist) values (2, 3, 50, 7);
+insert into prov_prod (id_product, id_prov, precio, exist) values (2, 1, 70, 11);
+
+https://github.com/redrbrt/sepomex-zip-codes.git
